@@ -4,8 +4,8 @@ jobs:
   Sonarqube:
     runs-on: ubuntu-latest
     steps:
-      run: echo "Hello World"
+    - run: echo "Hello World"
   Security:
     runs-on: ubuntu-latest
     steps:
-      run: echo "GoodBye World"
+    - run: echo "GoodBye World"
