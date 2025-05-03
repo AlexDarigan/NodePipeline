@@ -2,12 +2,21 @@ name: Scan
 
 on:
  workflow_call:
- 
+
 jobs:
-  Sonarqube:
+  code-quality:
     runs-on: ubuntu-latest
+    environment: Standard
     steps:
-    - run: echo "Hello World"
+    - uses: actions/checkout@v4
+      with:
+        # Disabling shallow clones is recommended for improving the relevancy of reporting
+        fetch-depth: 0
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@5.1.0
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
   Security:
     runs-on: ubuntu-latest
     steps:
