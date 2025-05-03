@@ -52,7 +52,6 @@ jobs:
 
   scan-job:
     needs: test
-    runs-on: ubuntu-latest
     uses: ./.github/workflows/scan.yaml
 
 
