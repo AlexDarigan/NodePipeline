@@ -54,7 +54,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Step1
+      # - name: Step1
         run: echo "Hello World"
 
   subjob2:
@@ -63,7 +63,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Step2
+      # - name: Step2
         run: echo "GoodByeWorld"
 
 
