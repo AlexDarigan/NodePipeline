@@ -58,11 +58,13 @@ jobs:
   # multijob:
   subjob1:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Step1
         run: echo "Hello World"
   subjob2:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Step2
         run: echo "GoodByeWorld"
