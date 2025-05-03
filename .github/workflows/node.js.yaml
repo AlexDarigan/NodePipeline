@@ -67,8 +67,8 @@ jobs:
       matrix:
         node-version: [22.x]
 
-      needs: test
-      runs-on: ubuntu-latest
-      steps:
-        - name: Step2
-          run: echo "GoodBye World"
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step2
+        run: echo "GoodBye World"
