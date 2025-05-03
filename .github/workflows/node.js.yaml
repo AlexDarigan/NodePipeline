@@ -49,18 +49,30 @@ jobs:
     - run: npm ci # Clean install
     - run: npm test # Run tests
 
-  scan:
 
+  scan-job:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Step1
-        run: echo "Hello World"
+      - name: Run scan
+        id: scan
+        run: echo "Hello World from scan"
 
-  scanX:
+      - name: Run scanX
+        id: scanX
+        run: echo "GoodBye World from scanX"
+  # scan:
 
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Step2
-        run: echo "GoodBye World"
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Step1
+  #       run: echo "Hello World"
+
+  # scanX:
+
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Step2
+  #       run: echo "GoodBye World"
