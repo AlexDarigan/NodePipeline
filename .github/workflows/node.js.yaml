@@ -32,4 +32,22 @@ jobs:
         cache: 'npm'
     - run: npm ci # Clean install
     - run: npm run build --if-present # Build if build script if present
-    - run: npm test # test-script if present
+
+  test: 
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+      steps:
+          # Checkout our repo
+        - uses: actions/checkout@v4
+          # Use NodeJS
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v4
+          with:
+            node-version: ${{ matrix.node-version }}
+            cache: 'npm'
+        - run: npm ci # Clean install
+        - run: npm test # Run tests
