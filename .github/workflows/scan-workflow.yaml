@@ -1,0 +1,11 @@
+name: Scan
+
+jobs:
+  Sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      run: echo "Hello World"
+  Security:
+    runs-on: ubuntu-latest
+    steps:
+      run: echo "GoodBye World"
