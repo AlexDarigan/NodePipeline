@@ -37,8 +37,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
 
-    
-
     steps:
       # Checkout our repo
     - uses: actions/checkout@v4
@@ -63,3 +61,14 @@ jobs:
       - name: Step1
         run: echo "Hello World"
 
+  scanX:
+
+  strategy:
+    matrix:
+      node-version: [22.x]
+
+  needs: test
+  runs-on: ubuntu-latest
+  steps:
+    - name: Step1
+      run: echo "Hello World"
