@@ -52,6 +52,7 @@ jobs:
 
   scan-job:
     needs: test
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4 # This is required to checkout the repo so we can access other workflows
       - uses: ./.github/workflows/scan.yaml
