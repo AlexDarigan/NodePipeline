@@ -12,18 +12,23 @@ jobs:
   build: 
     # The enviroment the job runs on (ubuntu is a good default)
     runs-on: ubuntu-latest
-  
+    
+    # The strategy tag defines how we'll run this build script
+    strategy:
+      matrix: # Matrix identifies that we will run this script for all present node-versions in the list
+        node-version: [22.x]
+
     # The steps of the build job
     steps:
       # We're using the checkout action to checkout our code repository
     - uses: actions/checkout@v4
       # We've naming this step as 'Use Node.js'
-    - name: Use Node.js 22.x
+    - name: Use Node.js ${{ matrix.node-version }}
       # The 'Use Node.js' step will use the setup-node action
       uses: actions/setup-node@v4
       # The additional parameters of this step is the node version as defined by the matrix and the cache handle which is npm
       with:
-        node-version: 22.x
+        node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci # Clean install
     - run: npm run build --if-present # Build if build script if present
@@ -32,9 +37,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
 
-    # strategy:
-    #   matrix:
-    #     node-version: [22.x]
+    strategy:
+      matrix:
+        node-version: [22.x]
 
     steps:
       # Checkout our repo
@@ -48,22 +53,25 @@ jobs:
     - run: npm ci # Clean install
     - run: npm test # Run tests
 
+  scan:
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+
   subjob1:
     runs-on: ubuntu-latest
-    # needs: test
-
+    needs: test
     steps:
-      - uses: actions/checkout@v4
-      # - name: Step1
+      - name: Step1
         run: echo "Hello World"
+
 
   subjob2:
     runs-on: ubuntu-latest
-    # needs: test
-
+    needs: test
     steps:
-      - uses: actions/checkout@v4
-      # - name: Step2
+      - name: Step2
         run: echo "GoodByeWorld"
 
 
