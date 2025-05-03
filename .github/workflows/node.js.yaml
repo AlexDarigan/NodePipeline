@@ -63,12 +63,7 @@ jobs:
     steps:
       - name: Step2
         run: echo "GoodByeWorld"
-  scan:
-    needs: [subjob1, subjob2]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Step2
-        run: echo "Scan!"
+
 
   # sonarqube:
   #   name: SonarQube Trigger
