@@ -9,4 +9,8 @@ function subtract(a, b) {
     return a - b
 }
 
-export { add, subtract }
+function multiply(a, b) {
+    return a * b
+}
+
+export { add, subtract, multiply }
