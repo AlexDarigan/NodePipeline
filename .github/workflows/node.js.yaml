@@ -55,6 +55,7 @@ jobs:
 
   scan:
     name: Sonarqube??
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Step1
