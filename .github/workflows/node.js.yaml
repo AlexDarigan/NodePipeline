@@ -53,9 +53,6 @@ jobs:
     - run: npm ci # Clean install
     - run: npm test # Run tests
 
-  
-  # multijob:
-  # multijob:
   subjob1:
     runs-on: ubuntu-latest
     needs: test
@@ -63,7 +60,6 @@ jobs:
     steps:
       - name: Step1
         run: echo "Hello World"
-
 
   subjob2:
     runs-on: ubuntu-latest
