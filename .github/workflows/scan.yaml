@@ -1,5 +1,9 @@
 name: Scan
 
+on:
+ workflow-call:
+  branch: ["main"]
+
 jobs:
   Sonarqube:
     runs-on: ubuntu-latest
