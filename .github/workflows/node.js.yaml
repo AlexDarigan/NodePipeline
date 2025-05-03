@@ -52,27 +52,7 @@ jobs:
 
   scan-job:
     needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run scan
-        id: scan
-        run: echo "Hello World from scan"
+    uses: ./.github/workflows/scan-workflow.yml
 
-      - name: Run scanX
-        id: scanX
-        run: echo "GoodBye World from scanX"
-  # scan:
 
-  #   needs: test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Step1
-  #       run: echo "Hello World"
 
-  # scanX:
-
-  #   needs: test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Step2
-  #       run: echo "GoodBye World"
