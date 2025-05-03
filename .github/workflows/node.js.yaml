@@ -52,7 +52,7 @@ jobs:
 
   scan-job:
     needs: test
-    uses: ./.github/workflows/scan.yml
+    uses: scan.yml
 
 
 
