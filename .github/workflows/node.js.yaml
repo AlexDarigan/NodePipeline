@@ -53,19 +53,19 @@ jobs:
     - run: npm ci # Clean install
     - run: npm test # Run tests
 
-  multijob:
-    subjob1:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Step1
-          run: echo "Hello World"
+  # multijob:
+  #   subjob1:
+  #     runs-on: ubuntu-latest
+  #     steps:
+  #       - name: Step1
+  #         run: echo "Hello World"
 
 
-    subjob2:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Step2
-          run: echo "GoodByeWorld"
+  #   subjob2:
+  #     runs-on: ubuntu-latest
+  #     steps:
+  #       - name: Step2
+  #         run: echo "GoodByeWorld"
 
 
   # sonarqube:
