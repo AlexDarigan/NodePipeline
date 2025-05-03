@@ -64,7 +64,7 @@ jobs:
       - name: Step2
         run: echo "GoodByeWorld"
   scan:
-    needs: [job1, job2]
+    needs: [subjob1, subjob2]
     runs-on: ubuntu-latest
     steps:
       - name: Step2
