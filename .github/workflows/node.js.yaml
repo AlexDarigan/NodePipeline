@@ -52,14 +52,14 @@ jobs:
     - run: npm ci # Clean install
     - run: npm test # Run tests
 
-
+  name: subs
   subjob1:
     runs-on: ubuntu-latest
     steps:
       - name: Step1
         run: echo "Hello World"
 
-        
+
   subjob2:
     runs-on: ubuntu-latest
     steps:
