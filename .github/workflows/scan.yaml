@@ -1,7 +1,7 @@
 name: Scan
 
 on:
- workflow-call:
+ workflow_call:
   branch: ["main"]
 
 jobs:
