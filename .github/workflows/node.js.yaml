@@ -53,7 +53,8 @@ jobs:
   scan-job:
     needs: test
     runs-on: ubuntu-latest
-    use: ./.github/workflows/scan.yaml
+    uses: ./.github/workflows/scan.yaml
+
 
 
 
