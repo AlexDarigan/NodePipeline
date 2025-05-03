@@ -59,12 +59,24 @@ jobs:
   subjob1:
     runs-on: ubuntu-latest
     needs: test
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
     steps:
       - name: Step1
         run: echo "Hello World"
+
+
   subjob2:
     runs-on: ubuntu-latest
     needs: test
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
     steps:
       - name: Step2
         run: echo "GoodByeWorld"
