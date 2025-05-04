@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Health Check
     steps:
-    - name: Run Health Checl
+    - name: Run Health Check
       run: |
-        STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.AIKIDO_SECRET_KEY }})
+        STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.NODE_URL }})
         if [ "$STATUS_CODE" -eq 200 ]; then
           echo "Application is healthy (HTTP 200)"
         else
