@@ -1,0 +1,43 @@
+name: Deploy
+
+on:
+  workflow_call:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+# name: Deploy to GitHub Pages
+
+# on:
+#   push:
+#     branches:
+#       - main # Or your main development branch
+
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Set up Node.js # Adjust if your project uses a different language/environment
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 'lts/*'
+
+#       - name: Install dependencies # Your project's dependency installation command
+#         run: npm install
+
+#       - name: Build website # Your project's build command
+#         run: npm run build
+
+#       - name: Deploy to GitHub Pages
+#         uses: JamesIves/github-pages-deploy-action@v4
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#           branch: gh-pages # The branch where your GitHub Pages site will be published
+#           folder: dist # The output folder of your build process (adjust as needed)

@@ -17,6 +17,11 @@ jobs:
     uses: ./.github/workflows/build.yaml
     secrets: inherit
 
+  deploy:
+    needs: scan
+    uses: ./.github/workflows/deploy.yaml
+    secrets: inherit
+
   
 # # Workflow Triggers
 # on:
