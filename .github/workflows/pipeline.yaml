@@ -14,7 +14,7 @@ jobs:
 
   scan:
     needs: test
-    uses: ./.github/workflows/build.yaml
+    uses: ./.github/workflows/scan.yaml
     secrets: inherit
 
   deploy:
