@@ -18,6 +18,26 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
 
+    - name: Check SonarQube Quality Gate
+      id: sonarqube-quality-gate
+      uses: sonarsource/sonarqube-quality-gate-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+    - name: Check Code Coverage
+      if: steps.sonarqube-quality-gate.outputs.qualityGateStatus == 'OK'
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      run: |
+        COVERAGE=$(curl -s -u "${SONAR_TOKEN}:" "${SONAR_HOST_URL}/api/metrics/component?component=${{ github.repository }}&metricKeys=coverage" | jq -r '.component.measures[0].value')
+        echo "Code Coverage: $COVERAGE%"
+        if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+          echo "Code coverage is below 80%. Failing the build."
+          exit 1
+        fi
+
   # https://github.com/marketplace/actions/aikido-security-github-action
   sast:
     runs-on: ubuntu-latest
