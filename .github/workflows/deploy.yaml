@@ -6,38 +6,31 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-# name: Deploy to GitHub Pages
+      - name: Setup Node.js and yarn
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
 
-# on:
-#   push:
-#     branches:
-#       - main # Or your main development branch
+      # - name: Install dependencies
+      #   run: yarn install --frozen-lockfile
 
-# jobs:
-#   build-and-deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
+      # - name: Build Node Project
+      #   run: yarn build
 
-#       - name: Set up Node.js # Adjust if your project uses a different language/environment
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: 'lts/*'
+      - name: Google Cloud Auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-#       - name: Install dependencies # Your project's dependency installation command
-#         run: npm install
+      - name: Set up Cloud SDK
+        uses: 'google-github-actions/setup-gcloud@v2'
 
-#       - name: Build website # Your project's build command
-#         run: npm run build
-
-#       - name: Deploy to GitHub Pages
-#         uses: JamesIves/github-pages-deploy-action@v4
-#         with:
-#           token: ${{ secrets.GITHUB_TOKEN }}
-#           branch: gh-pages # The branch where your GitHub Pages site will be published
-#           folder: dist # The output folder of your build process (adjust as needed)
+      - name: Deploy to Google App Engine
+        run: |
+          gcloud app deploy app.yaml --quiet
