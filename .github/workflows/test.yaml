@@ -1,0 +1,19 @@
+name: Node.js Pipeline
+
+on:
+ workflow_call:
+
+jobs: 
+  test: 
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js 22.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.x
+        cache: 'npm'
+    - run: npm ci
+    - run: npm test
