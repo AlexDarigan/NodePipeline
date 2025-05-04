@@ -30,7 +30,7 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      run: |
+      run: 
         COVERAGE=$(curl -s -u "${SONAR_TOKEN}:" "${SONAR_HOST_URL}/api/metrics/component?component=${{ github.repository }}&metricKeys=coverage" | jq -r '.component.measures[0].value')
         echo "Code Coverage: $COVERAGE%"
         if (( $(echo "$COVERAGE < 80" | bc -l) )); then
