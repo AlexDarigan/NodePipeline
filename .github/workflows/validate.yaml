@@ -7,11 +7,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Health Check
-    run: |
-      STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.AIKIDO_SECRET_KEY }})
-      if [ "$STATUS_CODE" -eq 200 ]; then
-        echo "Application is healthy (HTTP 200)"
-      else
-        echo "Health check failed with status code: $STATUS_CODE"
-        exit 1
-      fi
+    steps:
+      run: |
+        STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.AIKIDO_SECRET_KEY }})
+        if [ "$STATUS_CODE" -eq 200 ]; then
+          echo "Application is healthy (HTTP 200)"
+        else
+          echo "Health check failed with status code: $STATUS_CODE"
+          exit 1
+        fi
