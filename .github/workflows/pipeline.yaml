@@ -22,58 +22,9 @@ jobs:
     uses: ./.github/workflows/deploy.yaml
     secrets: inherit
 
+  validate-deploy:
+    needs: deploy
+    uses: ./.github/workflows/validate.yaml
+    secrets: inherit
+
   
-# # Workflow Triggers
-# on:
-#   # Trigger workflow when a change is pushed to main
-#   push: 
-#     branches: ["main"]
-
-# # The Jobs of a pipeline to run when triggered (usually build, test, deploy, verify, push)
-# jobs: 
-#   # The first job, building the application
-#   build: 
-#     # The enviroment the job runs on (ubuntu is a good default)
-#     runs-on: ubuntu-latest
-    
-#     # The strategy tag defines how we'll run this build script
-#     strategy:
-#       matrix: # Matrix identifies that we will run this script for all present node-versions in the list
-#         node-version: [22.x]
-
-#     # The steps of the build job
-#     steps:
-#       # We're using the checkout action to checkout our code repository
-#     - uses: actions/checkout@v4
-#       # We've naming this step as 'Use Node.js'
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       # The 'Use Node.js' step will use the setup-node action
-#       uses: actions/setup-node@v4
-#       # The additional parameters of this step is the node version as defined by the matrix and the cache handle which is npm
-#       with:
-#         node-version: ${{ matrix.node-version }}
-#         cache: 'npm'
-#     - run: npm ci # Clean install
-#     - run: npm run build --if-present # Build if build script if present
-
-#   test: 
-#     runs-on: ubuntu-latest
-#     needs: build
-
-#     steps:
-#       # Checkout our repo
-#     - uses: actions/checkout@v4
-#       # Use NodeJS
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       uses: actions/setup-node@v4
-#       with:
-#         node-version: ${{ matrix.node-version }}
-#         cache: 'npm'
-#     - run: npm ci # Clean install
-#     - run: npm test # Run tests
-
-
-#   scan-job:
-#     needs: test
-#     uses: ./.github/workflows/scan.yaml
-#     secrets: inherit
