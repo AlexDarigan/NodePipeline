@@ -6,7 +6,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Health Check
+    name: validate-deployment
     steps:
     - name: Run Health Check
       run: |
